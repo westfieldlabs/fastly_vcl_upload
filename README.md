@@ -1,6 +1,6 @@
 # FastlyVclUpload
 
-TODO: Write a gem description
+Install VLC files from a given folder into Fastly.
 
 ## Installation
 
@@ -20,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If you are wanting to use this with rails. Then add the following to your assets:precompile rake task
+
+```
+FastlyVclUpload.install "#{Rails.root}/config",
+  service_name: Rails.configuration.base_domain,
+  api_key: ENV['FASTLY_API_KEY']
+```
+
+Example:
+```
+namespace :assets do
+  desc "Precompile assets, including install fastly's VCL"
+  task :precompile do
+    if %w(production).include? Rails.env
+      FastlyVclUpload.install "#{Rails.root}/config",
+        service_name: "service_name",
+        api_key: ENV['FASTLY_API_KEY']
+    end
+  end
+end
+```
 
 ## Contributing
 
