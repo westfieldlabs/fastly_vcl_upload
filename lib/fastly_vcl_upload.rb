@@ -1,4 +1,5 @@
 require 'tilt'
+require 'fastly'
 
 class FastlyVclUpload
 
